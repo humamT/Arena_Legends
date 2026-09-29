@@ -12,7 +12,9 @@ public abstract class Combattant {
 
     private static int nbCombattants = 0;
 
-    public abstract void attaquer(Combattant cible);
+    public abstract int attaquer(Combattant cible);
+
+    public abstract String getClasse();
 
     public void subirDegats(int d) {
 
@@ -37,6 +39,22 @@ public abstract class Combattant {
             }
 
             historiqueDegats[4] = degatsReels;
+        }
+    }
+
+    protected void subirDegatsBruts(int d) {
+        pv -= d;
+        if (pv < 0) {
+            pv = 0;
+        }
+        if (nombreDegats < 5) {
+            historiqueDegats[nombreDegats] = d;
+            nombreDegats++;
+        } else {
+            for (int i = 0; i < 4; i++) {
+                historiqueDegats[i] = historiqueDegats[i + 1];
+            }
+            historiqueDegats[4] = d;
         }
     }
 
@@ -116,7 +134,7 @@ public abstract class Combattant {
 
     @Override
     public String toString() {
-        return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
+        return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense + " Classe " + getClasse();
     }
 
 }
