@@ -2,6 +2,7 @@ package Arena_Legends;
 
 import java.util.Scanner;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class main {
 
@@ -103,6 +104,55 @@ public class main {
 
                 case -1:
                     // Rien à faire : l'erreur a déjà été affichée
+                    System.out.println();
+                    System.out.println("===== 100 SIMULATIONS =====");
+
+                    int victoiresGuerrier = 0;
+                    int victoiresMage = 0;
+                    int victoiresVoleur = 0;
+                    int victoiresPaladin = 0;
+
+                    for (int i = 0; i < 100; i++) {
+
+                        Tournoi t = new Tournoi();
+
+                        t.inscrire(new Guerrier("Thor", 150, 150, 30, 10));
+                        t.inscrire(new Guerrier("Kratos", 140, 140, 35, 8));
+
+                        t.inscrire(new Mage("Gandalf", 100, 100, 25, 5));
+                        t.inscrire(new Mage("Merlin", 110, 110, 22, 8));
+
+                        t.inscrire(new Voleur("Zed", 120, 120, 28, 5, 30));
+                        t.inscrire(new Voleur("Ezio", 115, 115, 30, 6, 25));
+
+                        t.inscrire(new Paladin("Arthur", 160, 160, 25, 12));
+                        t.inscrire(new Paladin("Lancelot", 150, 150, 28, 10));
+
+                        Combattant champion100 = t.lancerSilencieux();
+
+                        switch (champion100.getClasse()) {
+                            case "Guerrier":
+                                victoiresGuerrier++;
+                                break;
+
+                            case "Mage":
+                                victoiresMage++;
+                                break;
+
+                            case "Voleur":
+                                victoiresVoleur++;
+                                break;
+
+                            case "Paladin":
+                                victoiresPaladin++;
+                                break;
+                        }
+                    }
+
+                    System.out.println("Guerrier : " + victoiresGuerrier);
+                    System.out.println("Mage     : " + victoiresMage);
+                    System.out.println("Voleur   : " + victoiresVoleur);
+                    System.out.println("Paladin  : " + victoiresPaladin);
                     break;
 
                 default:

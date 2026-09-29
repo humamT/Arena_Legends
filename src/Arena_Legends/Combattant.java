@@ -132,6 +132,15 @@ public abstract class Combattant {
         return historiqueDegats.clone();
     }
 
+    private int victoires = 0;
+
+    public int getVictoires() {
+        return victoires;
+    }
+    
+    public void ajouterVictoire() {
+        victoires++;
+    }
     @Override
     public String toString() {
         return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense + " Classe " + getClasse();
