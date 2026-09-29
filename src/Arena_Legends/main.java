@@ -94,7 +94,7 @@ public class main {
                     System.out.println("Nombre de critiques : " + critiques);
                     System.out.println("Pourcentage réel : " + pourcentage + "%");
                     System.out.println("Plus longue série de critiques : " + meilleureSerie);
-                    
+
                     break;
 
                 case 0:
@@ -109,8 +109,6 @@ public class main {
                     System.out.println("Option invalide.");
                     break;
             }
-
         } while (choix != 0);
-
     }
 }
