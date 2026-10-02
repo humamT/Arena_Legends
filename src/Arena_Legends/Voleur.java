@@ -8,15 +8,18 @@ public class Voleur extends Combattant {
     private Random random = new Random();
 
     public Voleur(String nom, int pvMax, int pv, int attaque, int defense, int esquive) {
-        super(nom, pvMax, pv, attaque, defense);
+        super(nom, pvMax, pv, attaque, controlerEsquive(defense, esquive));
+        this.esquive = esquive;
+    }
 
+    private static int controlerEsquive(int defense, int esquive) {
         if (esquive < 10 || esquive > 40) {
             throw new IllegalArgumentException(
                 "L'esquive doit être comprise entre 10 et 40%."
             );
         }
 
-        this.esquive = esquive;
+        return defense;
     }
 
     @Override
@@ -29,20 +32,29 @@ public class Voleur extends Combattant {
             degats *= 2;
         }
 
-        cible.subirDegats(degats);
-
-        return degats;
+        return cible.subirDegats(degats);
     }
 
     @Override
-    public void subirDegats(int d) {
-
-        // Chance d'esquiver complètement
-        if (random.nextInt(100) < esquive) {
-            return;
+    public int subirDegats(int d) {
+        if (esquiveReussie()) {
+            return 0;
         }
 
-        super.subirDegats(d);
+        return super.subirDegats(d);
+    }
+
+    @Override
+    public int subirDegatsBruts(int d) {
+        if (esquiveReussie()) {
+            return 0;
+        }
+
+        return super.subirDegatsBruts(d);
+    }
+
+    private boolean esquiveReussie() {
+        return random.nextInt(100) < esquive;
     }
 
     @Override

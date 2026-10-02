@@ -16,14 +16,18 @@ public class Mage extends Combattant {
         if (mana >= 30) {
             mana -= 30;
             degats = getAttaque() * 2;
-            cible.subirDegatsBruts(degats);
-        } else {
-            degats = getAttaque() / 2;
-            mana += 15;
-            cible.subirDegats(degats);
+            return cible.subirDegatsBruts(degats);
         }
 
-        return degats;
+        degats = getAttaque() / 2;
+        mana += 15;
+        return cible.subirDegats(degats);
+    }
+
+    @Override
+    public void preparerProchainMatch() {
+        mana = 100;
+        super.preparerProchainMatch();
     }
 
     @Override

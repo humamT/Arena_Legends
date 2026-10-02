@@ -4,6 +4,10 @@
       "name": "JavaSE-17",
       "path": "C:\\Program Files\\Amazon Corretto\\jdk17.0.20_12",
       "default": true
+    },
+    {
+      "name": "JavaSE-25",
+      "path": "C:\\eclipse\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_25.0.4.v20260826-0822\\jre"
     }
   ]
 }

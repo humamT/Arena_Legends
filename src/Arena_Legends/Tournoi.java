@@ -20,6 +20,11 @@ public class Tournoi {
 
             for (int i = 0; i < actuels.size(); i += 2) {
 
+                if (i + 1 >= actuels.size()) {
+                    gagnants.add(actuels.get(i));
+                    break;
+                }
+
                 Combattant a = actuels.get(i);
                 Combattant b = actuels.get(i + 1);
 
@@ -28,9 +33,8 @@ public class Tournoi {
                 gagnants.add(gagnant);
             }
 
-            // Soigner complètement les gagnants
             for (Combattant gagnant : gagnants) {
-                gagnant.soigner(gagnant.getPvMax());
+                gagnant.preparerProchainMatch();
             }
 
             actuels = gagnants;
@@ -51,6 +55,11 @@ public class Tournoi {
 
             for (int i = 0; i < actuels.size(); i += 2) {
 
+                if (i + 1 >= actuels.size()) {
+                    gagnants.add(actuels.get(i));
+                    break;
+                }
+
                 Combattant a = actuels.get(i);
                 Combattant b = actuels.get(i + 1);
 
@@ -60,7 +69,7 @@ public class Tournoi {
             }
 
             for (Combattant gagnant : gagnants) {
-                gagnant.soigner(gagnant.getPvMax());
+                gagnant.preparerProchainMatch();
             }
 
             actuels = gagnants;

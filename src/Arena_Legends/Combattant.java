@@ -16,7 +16,7 @@ public abstract class Combattant {
 
     public abstract String getClasse();
 
-    public void subirDegats(int d) {
+    public int subirDegats(int d) {
 
         int degatsReels = d - defense;
 
@@ -24,38 +24,48 @@ public abstract class Combattant {
             degatsReels = 1;
         }
 
-        pv -= degatsReels;
+        return appliquerDegats(degatsReels);
+    }
+
+    protected int subirDegatsBruts(int d) {
+        return appliquerDegats(d);
+    }
+
+    private int appliquerDegats(int degats) {
+        int avant = pv;
+
+        pv -= degats;
 
         if (pv < 0) {
             pv = 0;
         }
 
+        int infliges = avant - pv;
+        enregistrerDegats(infliges);
+        return infliges;
+    }
+
+    private void enregistrerDegats(int degats) {
         if (nombreDegats < 5) {
-            historiqueDegats[nombreDegats] = degatsReels;
+            historiqueDegats[nombreDegats] = degats;
             nombreDegats++;
         } else {
             for (int i = 0; i < 4; i++) {
                 historiqueDegats[i] = historiqueDegats[i + 1];
             }
 
-            historiqueDegats[4] = degatsReels;
+            historiqueDegats[4] = degats;
         }
     }
 
-    protected void subirDegatsBruts(int d) {
-        pv -= d;
-        if (pv < 0) {
-            pv = 0;
+    public void preparerProchainMatch() {
+        pv = pvMax;
+
+        for (int i = 0; i < historiqueDegats.length; i++) {
+            historiqueDegats[i] = 0;
         }
-        if (nombreDegats < 5) {
-            historiqueDegats[nombreDegats] = d;
-            nombreDegats++;
-        } else {
-            for (int i = 0; i < 4; i++) {
-                historiqueDegats[i] = historiqueDegats[i + 1];
-            }
-            historiqueDegats[4] = d;
-        }
+
+        nombreDegats = 0;
     }
 
     public void soigner(int s) {

@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "main",
+      "request": "launch",
+      "mainClass": "Arena_Legends/Arena_Legends.main",
+      "projectName": "Arena_Legends"
+    },
+    {
+      "type": "java",
+      "name": "Arena Legends",
+      "request": "launch",
+      "mainClass": "Arena_Legends.main",
+      "projectName": "Arena_Legends",
+      "console": "integratedTerminal",
+      "vmArgs": "-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8"
+    }
+  ]
+}

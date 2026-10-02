@@ -15,6 +15,6 @@ Le type déclaré de la variable est Combattant, mais l'objet réel est un Mage.
 
 ---------
 
-Sur 100 simulations, le Guerrier a remporté 89 tournois, le Voleur 7, le Paladin 4 et le Mage 0.
+Sur 100 simulations, le Guerrier a remporté 57 tournois, le Voleur 21, le Mage 11 et le Paladin 11.
 
-Dans cette série de simulations, le Guerrier est donc la classe qui a remporté le plus de tournois. Les résultats ne sont cependant pas parfaitement équilibrés, puisque le Guerrier domine largement les autres classes et que le Mage n'a remporté aucun tournoi. Ces résultats peuvent varier d'une série de 100 simulations à une autre à cause de l'aléatoire.
+Dans cette série de simulations, le Guerrier est donc la classe qui a remporté le plus de tournois. Les résultats restent déséquilibrés : le Guerrier gagne encore plus de la moitié des tournois, mais les autres classes gagnent aussi, y compris le Mage. Ces résultats peuvent varier d'une série de 100 simulations à une autre à cause de l'aléatoire.

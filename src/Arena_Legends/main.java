@@ -34,16 +34,22 @@ public class main {
                 case 1:
                     int nombreFace;
 
-                    System.out.print("Nombre de faces (4-20) : ");
-                    nombreFace = scanner.nextInt();
-
-                    while (nombreFace < 4 || nombreFace > 20) {
-                        System.out.println(
-                                "Le nombre de faces doit être entre 4 et 20.");
-
+                    do {
                         System.out.print("Nombre de faces (4-20) : ");
-                        nombreFace = scanner.nextInt();
-                    }
+
+                        if (scanner.hasNextInt()) {
+                            nombreFace = scanner.nextInt();
+
+                            if (nombreFace < 4 || nombreFace > 20) {
+                                System.out.println(
+                                        "Le nombre de faces doit être entre 4 et 20.");
+                            }
+                        } else {
+                            System.out.println("Entrée invalide.");
+                            scanner.next();
+                            nombreFace = -1;
+                        }
+                    } while (nombreFace < 4 || nombreFace > 20);
 
                     dé dé = new dé(nombreFace);
                     int resultat = dé.lancer();
@@ -56,16 +62,22 @@ public class main {
                 case 2:
                     int points;
 
-                    System.out.print("Nombre de points : ");
-                    points = scanner.nextInt();
-
-                    while (points < 0) {
-                        System.out.println(
-                                "Le nombre de points ne peut pas être négatif.");
-
+                    do {
                         System.out.print("Nombre de points : ");
-                        points = scanner.nextInt();
-                    }
+
+                        if (scanner.hasNextInt()) {
+                            points = scanner.nextInt();
+
+                            if (points < 0) {
+                                System.out.println(
+                                        "Le nombre de points ne peut pas être négatif.");
+                            }
+                        } else {
+                            System.out.println("Entrée invalide.");
+                            scanner.next();
+                            points = -1;
+                        }
+                    } while (points < 0);
 
                     if (points < 100) {
                         System.out.println("Rang : Bronze");
@@ -130,6 +142,62 @@ public class main {
             }
 
         } while (choix != 0);
+
+        // =====================================================
+        // STATS ARENE
+        // =====================================================
+
+        System.out.println();
+        System.out.println("===== STATS ARENE =====");
+
+        int[] valeurs = {12, 7, 12, 3, 7, 20, 3};
+
+        System.out.println("Moyenne : " + StatsArene.moyenne(valeurs));
+        System.out.println("Max : " + StatsArene.max(valeurs));
+        System.out.println("Min : " + StatsArene.min(valeurs));
+
+        int[] copie = valeurs.clone();
+        int echanges = StatsArene.trierDecroissant(copie);
+
+        System.out.print("Tri décroissant : ");
+
+        for (int i = 0; i < copie.length; i++) {
+            System.out.print(copie[i]);
+
+            if (i < copie.length - 1) {
+                System.out.print(" ");
+            }
+        }
+
+        System.out.println();
+        System.out.println("Échanges : " + echanges);
+
+        int[] uniques = StatsArene.sansDoublons(valeurs);
+
+        System.out.print("Sans doublons : ");
+
+        for (int i = 0; i < uniques.length; i++) {
+            System.out.print(uniques[i]);
+
+            if (i < uniques.length - 1) {
+                System.out.print(" ");
+            }
+        }
+
+        System.out.println();
+        System.out.println("Grille :");
+
+        char[][] grille = StatsArene.creerGrille();
+
+        for (int i = 0; i < grille.length; i++) {
+            for (int j = 0; j < grille[i].length; j++) {
+                System.out.print(grille[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("Distance A-B : " + StatsArene.distance(grille));
 
         // =====================================================
         // TOURNOI FINAL

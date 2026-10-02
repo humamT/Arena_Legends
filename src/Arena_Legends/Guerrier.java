@@ -15,8 +15,13 @@ public class Guerrier extends Combattant {
             degats *= 2;
             rage = 0;
         }
-        cible.subirDegats(degats);
-        return degats;
+        return cible.subirDegats(degats);
+    }
+
+    @Override
+    public void preparerProchainMatch() {
+        rage = 0;
+        super.preparerProchainMatch();
     }
 
     @Override
